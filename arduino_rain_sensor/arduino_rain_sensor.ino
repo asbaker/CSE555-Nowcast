@@ -1,4 +1,4 @@
-#define DELAY_TIME 30
+#define DELAY_TIME 10
 #define SENSOR_ON_PIN 2
 #define LED_PIN 4
 
