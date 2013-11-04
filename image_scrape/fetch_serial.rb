@@ -39,23 +39,6 @@ def get_serial_value(serial, value="")
 	end
 end
 
-
-
-
-#	value = ""
-#	begin
-#		value = serial.gets(sep="|")
-#	rescue
-#	end
-
-#	unless value.nil? or value.empty?
-#		value.to_i
-#		p "value is #{value} ... #{value.to_i}"
-#	else
-#		nil
-#	end
-#end
-
 def download_images(value)
 	if value.to_i > 200 and RadarFetch.minutes_since_last_image > 120
 		RadarFetch.get_all
