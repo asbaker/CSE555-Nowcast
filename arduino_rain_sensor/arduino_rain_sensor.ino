@@ -1,4 +1,4 @@
-#define DELAY_TIME 10
+#define DELAY_TIME 30
 #define SENSOR_ON_PIN 2
 #define LED_PIN 4
 
@@ -20,7 +20,7 @@ void loop() {
   digitalWrite(SENSOR_ON_PIN, LOW);
 
   
-  Serial.println(sensorValue);
+  Serial.print(String(sensorValue) + "|");
 
   
   if(sensorValue > 200) {

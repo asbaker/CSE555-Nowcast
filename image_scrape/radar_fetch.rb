@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'time'
 
 class RadarFetch
   def self.get_product(type, product)
@@ -16,7 +17,7 @@ class RadarFetch
     end
   end
 
-  def self.get_all()
+  def self.get_all
     self.get_product("RadarImg", "N0R")
     self.get_product("RadarImg", "N0S")
     self.get_product("RadarImg", "N0V")
@@ -34,4 +35,15 @@ class RadarFetch
     self.get_product("Legend", "NCR")
     self.get_product("Legend", "NTP")
   end
+
+	def self.minutes_since_last_image
+		gif_files = Dir.entries("RadarImg/NCR").select { |file| file.end_with?(".gif") }
+		times = gif_files.map { |file| set_to_utc(Time.parse(file)) }
+		((Time.now.utc - times.sort.last)/60).to_i
+	end
+
+
+	def self.set_to_utc(time)
+		Time.parse(time.strftime('%Y-%m-%d %H:%M:%S UTC'))
+	end
 end
