@@ -36,14 +36,14 @@ class RadarFetch
     self.get_product("Legend", "NTP")
   end
 
-	def self.minutes_since_last_image
-		gif_files = Dir.entries("RadarImg/NCR").select { |file| file.end_with?(".gif") }
-		times = gif_files.map { |file| set_to_utc(Time.parse(file)) }
-		((Time.now.utc - times.sort.last)/60).to_i
-	end
+  def self.minutes_since_last_image
+    gif_files = Dir.entries("RadarImg/NCR").select { |file| file.end_with?(".gif") }
+    times = gif_files.map { |file| set_to_utc(Time.parse(file)) }
+    ((Time.now.utc - times.sort.last)/60).to_i
+  end
 
 
-	def self.set_to_utc(time)
-		Time.parse(time.strftime('%Y-%m-%d %H:%M:%S UTC'))
-	end
+  def self.set_to_utc(time)
+    Time.parse(time.strftime('%Y-%m-%d %H:%M:%S UTC'))
+  end
 end
