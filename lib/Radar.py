@@ -23,7 +23,7 @@ class Radar:
 
   def placePoi(self, point):
     copy = self.image.copy()
-    copy.drawCircle(point, 2, Color.FUCHSIA, thickness=-1)
+    copy.drawCircle(point, 2, Color.RED, thickness=-1)
     return Radar(copy)
 
   def show(self):
@@ -45,7 +45,7 @@ class Radar:
     if (blobs is not None):
       print "wooooooooo"
       for b in blobs:
-        b.drawOutline(color=Color.LIME, width=-1,alpha=128)
+        b.drawOutline(color=Color.HOTPINK, width=-1,alpha=128)
 
     return (Radar(copy), blobs)
 
