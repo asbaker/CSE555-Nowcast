@@ -34,7 +34,7 @@ class Radar:
       if disp.mouseLeft:
         break
 
-  def getCells(self):
+  def getCells(self, draw=False):
     copy = self.image.copy()
 
     palette = copy.getPalette(bins=2)
@@ -42,21 +42,20 @@ class Radar:
 
     blobs = copy.findBlobsFromPalette(palette)
 
-    if (blobs is not None):
-      print "wooooooooo"
+    if draw:
       for b in blobs:
         b.drawOutline(color=Color.HOTPINK, width=-1,alpha=128)
 
     return (Radar(copy), blobs)
 
-  def getMotion(self, prior):
+  def getMotion(self, prior, draw=False):
     copy = self.image.copy()
-
     motion = copy.findMotion(prior.image, method="HS")
     filtered_motion = filter(lambda m: m.magnitude() > 0 and copy.getPixel(int(m.x), int(m.y)) != Color.WHITE, motion)
 
-    for m in filtered_motion:
-      m.draw(color=Color.PLUM,normalize=False)
+    if draw:
+      for m in filtered_motion:
+        m.draw(color=Color.PLUM,normalize=False)
 
     return (Radar(copy), filtered_motion)
 
